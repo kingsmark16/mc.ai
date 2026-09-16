@@ -6,7 +6,7 @@ Astra DB, and streams grounded answers back to the frontend.
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 22 or newer
 - A Google AI Studio project and API key with access to the configured chat and
   embedding models
 - A paid Gemini API tier for production workloads that exceed free embedding
