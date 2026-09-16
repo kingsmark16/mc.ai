@@ -1,0 +1,62 @@
+:root {
+  font-family:
+    "Space Grotesk",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1b2c39;
+  background: #edf2f6;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --mono:
+    "DM Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  min-width: 320px;
+  background: #edf2f6;
+}
+
+body {
+  height: 100%;
+  min-width: 320px;
+  overflow: hidden;
+  margin: 0;
+  background: #edf2f6;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #d9904d;
+  outline-offset: 2px;
+}
+
+#root {
+  height: 100%;
+}
