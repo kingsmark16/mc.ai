@@ -9523,3 +9523,72 @@
     max-height: min(220px, 35dvh);
   }
 }
+
+/* Keep the compact top navigation aligned and free of mobile tap containers. */
+@media (max-width: 700px) {
+  .topbar-actions {
+    align-items: center;
+  }
+
+  .guide-link,
+  .topbar-legal-nav button {
+    -webkit-tap-highlight-color: transparent;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    line-height: 1;
+    outline: none;
+    transform: none;
+  }
+
+  .guide-link:hover,
+  .guide-link:focus,
+  .guide-link:focus-visible,
+  .guide-link:active,
+  .topbar-legal-nav button:hover,
+  .topbar-legal-nav button:focus,
+  .topbar-legal-nav button:focus-visible,
+  .topbar-legal-nav button:active {
+    color: #607985;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
+    transform: none;
+  }
+
+  .guide-link {
+    display: inline-flex;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+
+  .topbar-legal-nav {
+    display: inline-flex;
+    height: 42px;
+    align-items: center;
+    gap: 7px;
+    line-height: 1;
+  }
+
+  .topbar-legal-nav button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .guide-link {
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+
+  .topbar-legal-nav {
+    gap: 4px;
+  }
+}
