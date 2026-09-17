@@ -47,7 +47,10 @@ Create a Vercel project from this repository with these settings:
 
 `frontend/vercel.json` already includes the SPA fallback required for direct
 navigation. After the Vercel domain is known, add that exact HTTPS origin to
-the backend `CORS_ORIGINS` setting.
+the backend `CORS_ORIGINS` setting. Because Vercel and Azure are separate
+sites, set `COOKIE_SAME_SITE=none` in Azure so browser session cookies are sent
+with credentialed API requests; the backend's CSRF token protection remains
+enabled.
 
 ### Azure backend
 
@@ -64,7 +67,8 @@ frontend paths `/health`, `/session`, `/documents`, and `/rag` to the API.
 1. Create an Astra vector collection that indexes `source` and `ownerId`.
 2. Put Google and Astra secrets only in the backend environment.
 3. Set the backend to `NODE_ENV=production` and configure
-   `CORS_ORIGINS` with the exact HTTPS frontend origin.
+   `CORS_ORIGINS` with the exact HTTPS frontend origin. Set
+   `COOKIE_SAME_SITE=none` for the separate Vercel/Azure deployment.
 4. Build and run the backend with `npm ci`, `npm run build`, and
    `npm run start:prod`, or use `backend/Dockerfile` on Azure.
 5. Build the frontend with `VITE_API_URL` set to the HTTPS Azure API origin;

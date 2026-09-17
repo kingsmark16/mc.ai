@@ -17,6 +17,13 @@ export function validateEnvironment(
   const environment = configuredEnvironment === 'prod'
     ? 'production'
     : configuredEnvironment;
+  const configuredCookieSameSite =
+    typeof config.COOKIE_SAME_SITE === 'string' &&
+    config.COOKIE_SAME_SITE.trim()
+      ? config.COOKIE_SAME_SITE.trim().toLowerCase()
+      : environment === 'production'
+        ? 'none'
+        : 'lax';
 
   for (const key of requiredEnvironmentKeys) {
     const value = config[key];
@@ -80,6 +87,15 @@ export function validateEnvironment(
     }
   }
 
+  if (!['lax', 'none'].includes(configuredCookieSameSite)) {
+    errors.push('COOKIE_SAME_SITE must be either lax or none');
+  } else if (
+    configuredCookieSameSite === 'none' &&
+    environment !== 'production'
+  ) {
+    errors.push('COOKIE_SAME_SITE=none requires NODE_ENV=production');
+  }
+
   if (errors.length > 0) {
     throw new Error(
       `Invalid environment configuration:\n- ${errors.join('\n- ')}`,
@@ -90,6 +106,7 @@ export function validateEnvironment(
     ...config,
     NODE_ENV: environment,
     PORT: parsedPort,
+    COOKIE_SAME_SITE: configuredCookieSameSite,
     GOOGLE_MODEL:
       typeof config.GOOGLE_MODEL === 'string' && config.GOOGLE_MODEL.trim()
         ? config.GOOGLE_MODEL.trim()

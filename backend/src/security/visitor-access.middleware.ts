@@ -107,11 +107,16 @@ export class VisitorAccessMiddleware implements NestMiddleware {
   }
 
   private cookieOptions(httpOnly: boolean) {
+    const sameSite =
+      this.configService.get<string>('COOKIE_SAME_SITE') === 'none'
+        ? ('none' as const)
+        : ('lax' as const);
+
     return {
       httpOnly,
       maxAge: visitorCookieMaxAgeMs,
       path: '/',
-      sameSite: 'lax' as const,
+      sameSite,
       secure: this.configService.get<string>('NODE_ENV') === 'production',
     };
   }

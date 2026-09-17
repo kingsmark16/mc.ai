@@ -28,6 +28,7 @@ Important settings:
 | `PORT` | API port. Defaults to `3005`. |
 | `NODE_ENV` | Use `production` for a deployed API. |
 | `CORS_ORIGINS` | Comma-separated frontend origins. Production requires HTTPS origins. |
+| `COOKIE_SAME_SITE` | Use `none` for separate HTTPS Vercel/Azure origins; otherwise use `lax`. |
 | `GOOGLE_API_KEY` | Google Gemini API key. Keep it server-side. |
 | `GOOGLE_MODEL` | Gemini chat model. |
 | `GOOGLE_EMBEDDING_MODEL` | Gemini embedding model. |
@@ -42,11 +43,14 @@ For production, use settings similar to:
 ```dotenv
 NODE_ENV=production
 CORS_ORIGINS=https://app.example.com
+COOKIE_SAME_SITE=none
 ENABLE_DIAGNOSTIC_ENDPOINTS=false
 ```
 
 The API validates required credentials and the Astra HTTPS endpoint before it
-starts. Never commit `.env` or expose `GOOGLE_API_KEY` in the frontend build.
+starts. `COOKIE_SAME_SITE=none` is required when the frontend and API are on
+different sites; it is paired with secure cookies and the existing CSRF token
+checks. Never commit `.env` or expose `GOOGLE_API_KEY` in the frontend build.
 
 ## Run the API
 

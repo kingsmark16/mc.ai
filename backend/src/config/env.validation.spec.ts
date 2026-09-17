@@ -12,6 +12,7 @@ describe('validateEnvironment', () => {
   it('applies safe defaults for optional settings', () => {
     expect(validateEnvironment(validEnvironment)).toMatchObject({
       PORT: 3005,
+      COOKIE_SAME_SITE: 'lax',
       GOOGLE_MODEL: 'gemini-3.1-flash-lite',
       GOOGLE_EMBEDDING_MODEL: 'gemini-embedding-001',
     });
@@ -63,5 +64,29 @@ describe('validateEnvironment', () => {
         CORS_ORIGINS: 'http://localhost:5173',
       }),
     ).toThrow('CORS_ORIGINS must contain HTTPS origins');
+  });
+
+  it('uses cross-site cookies for separate HTTPS deployments', () => {
+    expect(
+      validateEnvironment({
+        ...validEnvironment,
+        NODE_ENV: 'production',
+        CORS_ORIGINS: 'https://mc-ai.vercel.app',
+      }),
+    ).toMatchObject({ COOKIE_SAME_SITE: 'none' });
+
+    expect(() =>
+      validateEnvironment({
+        ...validEnvironment,
+        COOKIE_SAME_SITE: 'none',
+      }),
+    ).toThrow('COOKIE_SAME_SITE=none requires NODE_ENV=production');
+
+    expect(() =>
+      validateEnvironment({
+        ...validEnvironment,
+        COOKIE_SAME_SITE: 'strict',
+      }),
+    ).toThrow('COOKIE_SAME_SITE must be either lax or none');
   });
 });

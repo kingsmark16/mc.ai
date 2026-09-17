@@ -37,6 +37,34 @@ describe('VisitorAccessMiddleware', () => {
     expect(next).toHaveBeenCalledOnce();
   });
 
+  it('sets secure cross-site cookies in production', () => {
+    const productionConfigService = {
+      get: vi.fn((key: string) =>
+        key === 'NODE_ENV' ? 'production' : 'none',
+      ),
+    } as unknown as ConfigService;
+    const response = createResponse();
+
+    new VisitorAccessMiddleware(productionConfigService).use(
+      { headers: {}, method: 'GET' } as Request,
+      response,
+      vi.fn(),
+    );
+
+    expect(response.cookie).toHaveBeenNthCalledWith(
+      1,
+      'rag_visitor',
+      expect.any(String),
+      expect.objectContaining({ httpOnly: true, sameSite: 'none', secure: true }),
+    );
+    expect(response.cookie).toHaveBeenNthCalledWith(
+      2,
+      'rag_csrf',
+      expect.any(String),
+      expect.objectContaining({ httpOnly: true, sameSite: 'none', secure: true }),
+    );
+  });
+
   it('reuses valid cookies without issuing a new identity', () => {
     const visitorId = '11111111-1111-4111-8111-111111111111';
     const csrfToken = 'a'.repeat(64);
