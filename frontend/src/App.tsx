@@ -43,6 +43,9 @@ const maxDocumentSizeBytes = 10 * 1024 * 1024;
 const maxStoredConversations = 20;
 const maxStoredMessages = 50;
 const sessionHeartbeatIntervalMs = 15 * 1_000;
+const legalOperatorName = "MCANGHEL";
+const legalContactEmail = "mcanghel.mac@gmail.com";
+const legalEffectiveDate = "September 17, 2026";
 
 function getCurrentTimestamp() {
   return Date.now();
@@ -1068,10 +1071,9 @@ function TermsAndConditionsContent() {
   return (
     <div className="legal-document">
       <p className="legal-notice">
-        <strong>Deployment note:</strong> This is a product-ready general
-        template. Before public launch, replace the operator contact details and
-        governing-law placeholders with your actual information and have the
-        document reviewed for the jurisdictions where you operate.
+        <strong>Operator:</strong> {legalOperatorName}, Philippines. For
+        questions, support, or legal notices, email{" "}
+        <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
       </p>
 
       <section>
@@ -1271,8 +1273,8 @@ function TermsAndConditionsContent() {
         </p>
         <p>
           The operator may add, remove, or modify features and may update these
-          Terms. If a change materially affects your rights or obligations, the
-          operator should provide notice appropriate to the deployment.
+          Terms. If a change materially affects your rights or obligations,
+          MCANGHEL will provide notice appropriate to the deployment.
           Continuing to use the Service after the effective date of an update
           means you accept the updated Terms, to the extent permitted by law.
         </p>
@@ -1358,12 +1360,14 @@ function TermsAndConditionsContent() {
       <section>
         <h3>15. Governing law and disputes</h3>
         <p>
-          Replace this section before launch with the governing law, venue,
-          dispute-resolution process, and any mandatory consumer protections for
-          the operator’s actual location and users. Unless mandatory law says
-          otherwise, disputes should first be raised through the operator’s
-          support contact so the parties have a reasonable chance to resolve
-          them informally.
+          These Terms are governed by the laws of the Republic of the
+          Philippines, without regard to conflict-of-law rules. Subject to
+          mandatory consumer protections and any required alternative dispute
+          process, disputes relating to the Service will be brought before a
+          court of competent jurisdiction in the Philippines. Before starting a
+          formal proceeding, please contact MCANGHEL at{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a> so we
+          can try to resolve the issue informally.
         </p>
       </section>
 
@@ -1377,11 +1381,11 @@ function TermsAndConditionsContent() {
           part of a reorganization, sale, or transfer of the Service.
         </p>
         <p>
-          For questions, legal notices, or support, contact the Service operator
-          using the support or privacy contact published for this deployment.
-          Include enough information for the operator to identify the relevant
-          browser session or request without sending sensitive document content
-          unnecessarily.
+          MCANGHEL operates MC.AI from the Philippines. For questions, legal
+          notices, privacy requests, or support, contact{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
+          Include enough information to identify the relevant browser session or
+          request without sending sensitive document content unnecessarily.
         </p>
       </section>
     </div>
@@ -1392,11 +1396,9 @@ function PrivacyPolicyContent() {
   return (
     <div className="legal-document">
       <p className="legal-notice">
-        <strong>Deployment note:</strong> The operator identity, contact
-        address, retention choices, provider configuration, and legal bases must
-        be confirmed for the actual deployment before this policy is used as a
-        public legal notice. This copy is not a substitute for advice from a
-        qualified privacy professional.
+        <strong>Operator:</strong> {legalOperatorName}, Philippines. For
+        privacy questions, rights requests, or security concerns, email{" "}
+        <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
       </p>
 
       <section>
@@ -1405,10 +1407,9 @@ function PrivacyPolicyContent() {
           This Privacy Policy explains how the operator of MC.AI (the
           “Service”) collects, uses, stores, shares, and protects information
           when you visit or use the document-upload and question-answering
-          workspace. In this policy, “we,” “us,” and “our” mean the legal person
-          or business that operates the deployment you are using. Add that
-          operator’s legal name, address, and privacy contact before publishing
-          this policy.
+          workspace. In this policy, “we,” “us,” and “our” mean MCANGHEL, the
+          operator of this deployment in the Philippines. You can contact us at{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
         </p>
         <p>
           This policy describes the current application behavior. If the
@@ -1506,12 +1507,13 @@ function PrivacyPolicyContent() {
           <li>enforce the Terms and investigate suspected violations.</li>
         </ul>
         <p>
-          Where data-protection law requires a lawful basis, the operator may
-          rely on performance of a requested service or contract for core
-          functionality, legitimate interests for security and operations, legal
-          obligation where required, and consent where consent is required. The
-          operator must confirm the correct legal bases for its location,
-          business model, and actual processing activities.
+          Where Philippine law applies, we process personal information only
+          when permitted by law. Depending on the purpose, the applicable basis
+          may include your consent, steps requested before or performance of an
+          agreement, compliance with a legal obligation, protection of lawful
+          rights and interests, or another lawful basis recognized by the
+          Philippines Data Privacy Act and its implementing rules. We apply the
+          principles of transparency, legitimate purpose, and proportionality.
         </p>
       </section>
 
@@ -1583,10 +1585,10 @@ function PrivacyPolicyContent() {
         </p>
         <p>
           Third-party providers may process information under their own terms
-          and privacy policies. The operator should confirm provider settings,
-          contractual safeguards, model-training controls, and applicable data
-          processing agreements before using the Service with confidential or
-          regulated content.
+          and privacy policies. Before uploading confidential or regulated
+          content, review the risks and the applicable provider terms. MCANGHEL
+          does not intentionally sell uploaded documents or use them for
+          targeted advertising.
         </p>
       </section>
 
@@ -1607,28 +1609,32 @@ function PrivacyPolicyContent() {
           Conversation messages and selections stored in local storage remain in
           your browser until you clear them or the browser removes them. Server
           and provider logs may be retained for the period needed for security,
-          troubleshooting, legal compliance, and service operations. The
-          operator should set and publish specific retention periods for each
-          category before production.
+          troubleshooting, legal compliance, and service operations, and are
+          deleted or anonymized when they are no longer reasonably needed. We do
+          not keep a separate permanent copy of your document in the frontend’s
+          browser storage.
         </p>
         <p>
-          To request deletion of server-side data, use the deployment’s privacy
-          contact and include the relevant filename and browser-session details
-          without emailing the document itself unless necessary. If the visitor
-          cookie has been cleared, the operator may be unable to match a request
-          to the original anonymous session without additional verification.
+          To request deletion of server-side data, email{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a> and
+          include the relevant filename and browser-session details without
+          emailing the document itself unless necessary. If the visitor cookie
+          has been cleared, we may be unable to match a request to the original
+          anonymous session without additional verification.
         </p>
       </section>
 
       <section>
         <h3>8. International processing</h3>
         <p>
-          The operator and its providers may process information in countries
-          different from the country where you live. Where applicable law
-          requires safeguards for international transfers, the operator should
-          use an approved transfer mechanism and make information about those
-          safeguards available on request. Confirm the actual hosting regions,
-          provider locations, and transfer mechanism for this deployment.
+          MCANGHEL and its providers may process information in countries
+          different from the country where you live, including where the
+          Service’s hosting, database, AI, or delivery providers operate. Where
+          Philippine law or another applicable law requires safeguards for an
+          international transfer, we will apply the safeguards required by that
+          law. Contact{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a> for
+          questions about international processing.
         </p>
       </section>
 
@@ -1645,37 +1651,36 @@ function PrivacyPolicyContent() {
         </p>
         <p>
           If you believe your content or session has been accessed without
-          authorization, notify the operator promptly through the published
-          security or privacy contact. We may investigate and notify affected
-          people or authorities when required by law.
+          authorization, notify MCANGHEL promptly at{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>. We
+          may investigate and notify affected people or authorities when
+          required by law.
         </p>
       </section>
 
       <section>
         <h3>10. Your privacy rights</h3>
         <p>
-          Depending on where you live and the law that applies, you may have
-          rights to request access to, correction of, deletion of, restriction
-          of, or a copy of your personal information; to object to or withdraw
-          consent for certain processing; and to complain to a data-protection
-          authority. You may also have rights under laws such as the GDPR, UK
-          GDPR, or California privacy laws, subject to their conditions and
-          exceptions.
+          Subject to the conditions and exceptions in applicable law, including
+          the Philippines Data Privacy Act, you may have the right to be
+          informed, access your personal information, correct inaccurate
+          information, object to certain processing, request erasure or
+          blocking, request data portability, and seek damages or file a
+          complaint with the National Privacy Commission. Other rights may
+          apply depending on where you live.
         </p>
         <p>
-          Send a request to the operator’s published privacy contact. We may ask
-          for information needed to verify the request and protect another
-          person’s data. Because the current Service uses anonymous sessions,
-          the operator may not be able to identify or provide data if there is
-          not enough information to connect the request to a session. You may
-          appeal a refusal where applicable law requires an appeal process.
+          Send a request to{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>. We
+          may ask for information needed to verify the request and protect
+          another person’s data. Because the current Service uses anonymous
+          sessions, we may not be able to identify or provide data if there is
+          not enough information to connect the request to a session. We will
+          respond within the period required by applicable law.
         </p>
         <p>
-          If you are in the European Economic Area or United Kingdom, you may
-          complain to the supervisory authority in your country or place of
-          work. If you are in California, the operator should add the required
-          California-specific disclosures and request methods if the business is
-          subject to the CCPA or another applicable state privacy law.
+          If another privacy law applies to you, you may also contact the
+          relevant data-protection authority in your country or place of work.
         </p>
       </section>
 
@@ -1697,8 +1702,8 @@ function PrivacyPolicyContent() {
           processing to return answers. It is not intended to make decisions
           about a person’s legal rights, eligibility, employment, credit,
           housing, education, insurance, health, or access to essential
-          services. The operator should not configure it for those purposes
-          without a separate legal, safety, and human-review assessment.
+          services. MCANGHEL does not use the current Service to make those
+          decisions, and generated answers require independent human review.
         </p>
       </section>
 
@@ -1712,10 +1717,10 @@ function PrivacyPolicyContent() {
         </p>
         <p>
           For privacy questions, rights requests, security concerns, or legal
-          notices, contact the Service operator using the privacy contact
-          published for this deployment. Before launch, publish the operator’s
-          legal name, postal address, privacy email, and any data-protection
-          officer or representative contact that applies.
+          notices, contact MCANGHEL at{" "}
+          <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
+          MCANGHEL is based in the Philippines and will update this policy when
+          the Service or its information practices change.
         </p>
       </section>
     </div>
@@ -1816,7 +1821,7 @@ function LegalModal({
             <p className="eyebrow">Legal</p>
             <h2 id={titleId}>{title}</h2>
             <p className="legal-modal-meta">
-              Effective date: September 15, 2026
+              Effective date: {legalEffectiveDate}
             </p>
           </div>
 
@@ -1850,7 +1855,8 @@ function LegalModal({
 
         <footer className="legal-modal-footer">
           <p>
-            Questions? Use the support or privacy contact for this deployment.
+            Questions? Email{" "}
+            <a href={`mailto:${legalContactEmail}`}>{legalContactEmail}</a>.
           </p>
           <button type="button" className="legal-modal-done" onClick={onClose}>
             Done
